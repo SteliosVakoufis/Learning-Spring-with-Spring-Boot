@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### App Secrets ###
-*/resources/application.yml
+**/resources/application.yml
