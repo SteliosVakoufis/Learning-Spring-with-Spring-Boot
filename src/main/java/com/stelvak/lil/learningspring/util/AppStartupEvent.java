@@ -2,6 +2,7 @@ package com.stelvak.lil.learningspring.util;
 
 import java.sql.Date;
 
+import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -29,15 +30,17 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         // printRepositoriesData();
-        printReservationsByDate("2022-01-01");
+        // printReservationsByDate("2022-01-01");
 
     }
 
+    @SuppressAjWarnings
     private void printReservationsByDate(String date) {
         Iterable<Reservation> reservations = this.reservationRepository.findByDate(Date.valueOf(date));
         reservations.forEach(System.out::println);
     }
 
+    @SuppressAjWarnings
     private void printRepositoriesData(){
         var rooms = this.roomRepository.findAll();
         rooms.forEach(System.out::println);
