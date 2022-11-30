@@ -30,13 +30,13 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         // printRepositoriesData();
-        // printReservationsByDate("2022-01-01");
+        printReservationsByDate("2022-01-01");
 
     }
 
     @SuppressAjWarnings
     private void printReservationsByDate(String date) {
-        Iterable<Reservation> reservations = this.reservationRepository.findByDate(Date.valueOf(date));
+        Iterable<Reservation> reservations = this.reservationRepository.findReservationByReservationDate(Date.valueOf(date));
         reservations.forEach(System.out::println);
     }
 

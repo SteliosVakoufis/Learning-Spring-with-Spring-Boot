@@ -19,13 +19,13 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "GUEST_ID")
-    private long id;
+    private long guestId;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
 
     @Column(name = "LAST_NAME")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "EMAIL_ADDRESS")
     private String email;
