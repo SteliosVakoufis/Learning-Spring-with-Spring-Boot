@@ -1,8 +1,8 @@
-package com.stelvak.lil.learningspring.business;
+package com.stelvak.lil.learningspring.business.DTOs;
 
 import java.util.Date;
 
-public class RoomReservation {
+public class RoomReservationDTO {
     private long roomId;
     private long guestId;
     private String roomName;
