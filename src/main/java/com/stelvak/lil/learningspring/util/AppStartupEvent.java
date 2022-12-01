@@ -31,7 +31,6 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
     public void onApplicationEvent(ApplicationReadyEvent event) {
         // printRepositoriesData();
         // printReservationsByDate("2022-01-01");
-
     }
 
     @SuppressAjWarnings

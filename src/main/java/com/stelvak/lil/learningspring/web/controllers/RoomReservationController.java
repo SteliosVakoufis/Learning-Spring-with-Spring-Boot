@@ -1,4 +1,4 @@
-package com.stelvak.lil.learningspring.web;
+package com.stelvak.lil.learningspring.web.controllers;
 
 import java.util.Date;
 import java.util.List;

@@ -19,9 +19,9 @@ import com.stelvak.lil.learningspring.data.RoomRepository;
 
 @Service
 public class ReservationService {
-    private RoomRepository roomRepository;
-    private GuestRepository guestRepository;
-    private ReservationRepository reservationRepository;
+    private final RoomRepository roomRepository;
+    private final GuestRepository guestRepository;
+    private final ReservationRepository reservationRepository;
 
     public ReservationService(RoomRepository roomRepository, GuestRepository guestRepository,
             ReservationRepository reservationRepository) {
