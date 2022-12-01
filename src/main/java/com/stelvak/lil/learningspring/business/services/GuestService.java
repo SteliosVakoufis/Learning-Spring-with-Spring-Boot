@@ -1,7 +1,9 @@
 package com.stelvak.lil.learningspring.business.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class GuestService {
     }
 
     public List<GuestDTO> getAllGuestInfo() {
-        List<GuestDTO> result = new ArrayList<>();
+        var result = new ArrayList<GuestDTO>();
         guestRepository.findAll()
             .forEach(item -> {
                 var guestDTO = new GuestDTO();
@@ -31,6 +33,8 @@ public class GuestService {
                 result.add(guestDTO);
             });
 
-        return result;
+        return result.stream()
+            .sorted(Comparator.comparing(GuestDTO::getLastName))
+            .collect(Collectors.toList());
     }
 }
