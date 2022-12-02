@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.stelvak.lil.learningspring.business.DTOs.GuestDTO;
+import com.stelvak.lil.learningspring.business.DTOs.RoomDTO;
 import com.stelvak.lil.learningspring.business.DTOs.RoomReservationDTO;
 import com.stelvak.lil.learningspring.data.Guest;
 import com.stelvak.lil.learningspring.data.GuestRepository;
@@ -16,18 +18,37 @@ import com.stelvak.lil.learningspring.data.Reservation;
 import com.stelvak.lil.learningspring.data.ReservationRepository;
 import com.stelvak.lil.learningspring.data.Room;
 import com.stelvak.lil.learningspring.data.RoomRepository;
+import com.stelvak.lil.learningspring.util.DTOConvertUtils;
 
 @Service
 public class ReservationService {
     private final RoomRepository roomRepository;
     private final GuestRepository guestRepository;
     private final ReservationRepository reservationRepository;
+    private final DTOConvertUtils dtoConvertUtils;
 
     public ReservationService(RoomRepository roomRepository, GuestRepository guestRepository,
-            ReservationRepository reservationRepository) {
+            ReservationRepository reservationRepository, DTOConvertUtils dtoConvertUtils) {
         this.roomRepository = roomRepository;
         this.guestRepository = guestRepository;
         this.reservationRepository = reservationRepository;
+        this.dtoConvertUtils = dtoConvertUtils;
+    }
+
+    public Guest insertGuest(GuestDTO guestDTO) {
+        return guestRepository.save(
+            dtoConvertUtils.convertGuestDTOtoGuest(guestDTO)
+        );
+    }
+
+    public List<GuestDTO> getAllGuestInfo() {
+        return dtoConvertUtils.convertAllGuestToGuestDTO(
+            this.guestRepository.findAll()
+        );
+    }
+
+    public List<RoomDTO> getAllRoomsInfo() {
+        return dtoConvertUtils.convertAllRoomToRoomDTO(roomRepository.findAll());
     }
 
     public List<RoomReservationDTO> getRoomReservationsForDate(Date date) {

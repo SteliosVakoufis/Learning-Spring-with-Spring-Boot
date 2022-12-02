@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.stelvak.lil.learningspring.business.DTOs.GuestDTO;
-import com.stelvak.lil.learningspring.business.services.GuestService;
+import com.stelvak.lil.learningspring.business.services.ReservationService;
 
 @Controller
 @RequestMapping("/guests")
 public class GuestController {
-    private final GuestService guestService;
+    private final ReservationService reservationService;
 
-    public GuestController(GuestService guestService) {
-        this.guestService = guestService;
+    public GuestController(ReservationService reservationService) {
+        this.reservationService = reservationService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAllGuests(Model model) {
-        List<GuestDTO> guests = this.guestService.getAllGuestInfo();
+        List<GuestDTO> guests = this.reservationService.getAllGuestInfo();
         model.addAttribute("guests", guests);
         return "hotel-guests";
     }
